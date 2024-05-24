@@ -50,25 +50,3 @@ def get_valid_card_info(info: str) -> str:
         return ' '.join(new_splitter)
 
 
-
-# def get_valid_receiver(receiver: str) -> str:
-#     '''
-#     Возвращаем информацию по карте/счету-получателю в необходимом формате
-#     '''
-#     if 'Счет' in receiver:
-#         receiver = receiver.replace(receiver[-20: -4], 2 * '*')
-#         return receiver
-#     else:
-#         splitter_by_space = receiver.split()
-#         first_four = splitter_by_space[-1][-16:-12]
-#         second_four = splitter_by_space[-1][-12:-8]
-#         third_four = splitter_by_space[-1][-8: -4]
-#         four_four = splitter_by_space[-1][-4:]
-#         new_splitter = splitter_by_space[:-1]
-#         new_splitter.extend([first_four,
-#                             second_four.replace(second_four[-2:], '**'),
-#                             third_four.replace(third_four, '****'),
-#                             four_four])
-#         return ' '.join(new_splitter)
-for line in get_last_executed_operations(operations_reader()):
-    print(line)
