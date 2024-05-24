@@ -10,13 +10,13 @@ def operations_reader() -> list:
         return json.load(file)
 
 
-def get_last_five_operations(info: list) -> list:
+def get_last_executed_operations(info: list) -> list:
     '''
     Возвращаем всю доступную информацию за последние 5 операций
     '''
     pattern = '%Y-%m-%dT%H:%M:%S.%f'
-    no_empty_list = [el for el in info if el]
-    sorted_operations = sorted([el for el in info if el], key=lambda x: datetime.strptime(x['date'], pattern))
+    executed_operations = [el for el in info if el and el['state'] == 'EXECUTED']
+    sorted_operations = sorted(executed_operations, key=lambda x: datetime.strptime(x['date'], pattern))
     return sorted_operations[-1:-6:-1]
 
 
@@ -93,4 +93,5 @@ def get_amount(data: dict) -> str:
 def get_currency(data: dict) -> str:
     operation_amount = data['operationAmount']
     return operation_amount['currency']['name']
+
 
