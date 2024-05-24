@@ -1,8 +1,17 @@
 from utils import *
 
 for line in get_last_executed_operations(operations_reader()):
-    print(f'''{get_date(line)} {get_description(line)}
-{get_sender(line)} -> {get_receiver(line)}
-{get_amount(line)} {get_currency(line)}
+    right_date = get_date(line['date'])
+    description = line['description']
+    if 'from' in line:
+        valid_sender = get_valid_sender(line['from'])
+    else:
+        valid_sender = 'Нет данных об отправителе'
+    valid_receiver = get_valid_receiver(line['to'])
+    amount = line['operationAmount']['amount']
+    currency = line['operationAmount']['currency']['name']
+    print(f'''{right_date} {description}
+{valid_sender} -> {valid_receiver}
+{amount} {currency}
 ''')
 
