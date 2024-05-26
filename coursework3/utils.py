@@ -1,12 +1,13 @@
 from datetime import datetime
 import json
+import os
 
 
-def operations_reader() -> list:
+def operations_reader(path=os.path.abspath('operations.json')) -> list:
     '''
     Читаем и возвращаем содержимое файла "operations.json"
     '''
-    with open('/Users/aleksandrbocarov/coursework3/coursework3/operations.json', 'r') as file:
+    with open(path, 'r') as file:
         return json.load(file)
 
 
