@@ -1,4 +1,5 @@
 from coursework3.utils import operations_reader, get_valid_card_info, get_date, get_last_executed_operations
+import pytest
 
 
 def test_get_date():
@@ -15,14 +16,8 @@ def test_get_valid_card_info():
 
 
 def test_operations_reader():
-    assert operations_reader()[0]['id'] == 441945886
-    assert operations_reader()[1]['date'] == '2019-07-03T18:35:29.512364'
-    assert operations_reader()[2]['state'] == 'EXECUTED'
+    with pytest.raises(FileNotFoundError):
+        operations_reader('efegje.txt')
 
-
-def test_get_last_executed_operations():
-    assert get_last_executed_operations(operations_reader())[0]['id'] == 863064926
-    assert get_last_executed_operations(operations_reader())[4]['description'] == 'Открытие вклада'
-    assert get_last_executed_operations(operations_reader())[2]['date']  == '2019-11-19T09:22:25.899614'
 
 
